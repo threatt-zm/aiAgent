@@ -1,20 +1,22 @@
-import unittest
 from functions.get_files_info import get_files_info
 
-class TestGetFilesInfo(unittest.TestCase):
-    def test_working_directory(self):
-        print(get_files_info("calculator", "."))
+def TestGetFilesInfo():
 
-    def test_child_directory(self):
-        print(get_files_info("calculator", "pkg"))
+    print("Result for current directory")
+    result = get_files_info("calculator", ".")
+    print(result)
 
-    def test_error_outside_directory(self):
-        print(get_files_info("calculator", "/bin"))
+    print("Result for 'pkg' directory")
+    result = get_files_info("calculator", "pkg")
+    print(result)
 
-    def test_parent_directory(self):
-        print(get_files_info("calculator", "../"))
+    print("Result for '/bin' directory")
+    result = get_files_info("calculator", "/bin")
+    print(result)
 
-
+    print("Result for parent directory")
+    result = get_files_info("calculator", "../")
+    print(result)
 
 if __name__ == "__main__":
-    unittest.main()
+    TestGetFilesInfo()
