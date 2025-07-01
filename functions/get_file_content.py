@@ -1,4 +1,5 @@
 import os
+from google.genai import types
 
 def get_file_content(working_directory, file_path):
     current_path = os.path.abspath(working_directory)
@@ -17,3 +18,17 @@ def get_file_content(working_directory, file_path):
             return file_content
     except Exception as e:
         return f"Error: {e}"
+
+schema_get_file_content = types.FunctionDeclaration(
+    name="get_file_content",
+    description="Lists the contents of the specified file constrained to the working directory, trucated if the size > 10000.",
+    parameters=types.Schema(
+        type=types.Type.OBJECT,
+        properties={
+            "file": types.Schema(
+                type=types.Type.STRING,
+                description="The file to get the content from, relative to the working directory. File must exist in order to run.",
+            ),
+        },
+    ),
+)

@@ -1,5 +1,7 @@
 import os
-def write_file(working_directory, file_path, content):
+from google.genai import types
+
+def write_file(working_directory, file_path, content=""):
     current_path = os.path.abspath(working_directory)
     absolute_path = os.path.abspath(os.path.join(working_directory, file_path))
 
@@ -12,3 +14,21 @@ def write_file(working_directory, file_path, content):
         return f'Successfully wrote to "{file_path}" ({len(content)} characters written)'
     except Exception as e:
         return f"Error: {e}"
+
+schema_write_file = types.FunctionDeclaration(
+    name="write_file",
+    description="overwrites the contents of the specified file with the contents provided, constrained to the working directory.",
+    parameters=types.Schema(
+        type=types.Type.OBJECT,
+        properties={
+            "file": types.Schema(
+                type=types.Type.STRING,
+                description="The file to write to, relative to the working directory. If it doesn't exist, then it will be created.",
+            ),
+            "content": types.Schema(
+                type=types.Type.STRING,
+                description="The contents to write to the file. If not provided, the file will be cleared"
+            ),
+        },
+    ),
+)
