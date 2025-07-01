@@ -1,5 +1,6 @@
 from functions.get_files_info import get_files_info
 from functions.get_file_content import get_file_content
+from functions.write_file import write_file
 
 def TestGetFilesInfo():
 
@@ -36,6 +37,24 @@ def TestGetFileContent():
     print(result)
     print("=========================================================")
 
+def TestWriteFile():
+    print("Attempting to write to lorem.txt file:")
+    result = write_file("calculator", "lorem.txt", "wait, this isn't lorem ipsum")
+    print(result)
+    print("=========================================================")
+
+    print("Attempting to write to pkg/morelorem.txt file:")
+    result = write_file("calculator", "pkg/morelorem.txt", "lorem ipsum dolor sit amet")
+    print(result)
+    print("=========================================================")
+
+    print("Attempting to write to /tmp/temp.txt file:")
+    result = write_file("calculator", "/tmp/temp.txt", "this should not be allowed")
+    print(result)
+    print("=========================================================")
+
+
 if __name__ == "__main__":
     #TestGetFilesInfo()
-    TestGetFileContent()
+    #TestGetFileContent()
+    TestWriteFile()
