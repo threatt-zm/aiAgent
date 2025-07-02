@@ -30,7 +30,7 @@ schema_run_python_file = types.FunctionDeclaration(
     parameters=types.Schema(
         type=types.Type.OBJECT,
         properties={
-            "python_file": types.Schema(
+            "file_path": types.Schema(
                 type=types.Type.STRING,
                 description="the executable file, relative to the working directory. Will only execute if file has '.py' extension",
             ),
